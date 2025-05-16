@@ -7,7 +7,7 @@ export default function GardenPlannerApp() {
   const [filteredCrops, setFilteredCrops] = useState([]);
 
   const handleSearch = () => {
-    const zonePattern = new RegExp(`Zone[\\s]*${zone}`, "i");
+    const zonePattern = new RegExp(`Zone\s*${zone}`, "i");
 
     const results = cropData.filter((crop) => {
       const zoneMatch =
@@ -31,27 +31,34 @@ export default function GardenPlannerApp() {
     return numbers ? numbers.join(", ") : zones;
   };
 
+  const enhanceText = (text) => {
+    return text.replace(/before/gi, "before your average last frost date");
+  };
+
   return (
-    <div style={{ fontFamily: "Arial, sans-serif", padding: "2rem" }}>
-      <h1>🌱 Little Dibby Garden Planner</h1>
+    <div style={{ fontFamily: "Poppins, sans-serif", padding: "2rem", maxWidth: "800px", margin: "0 auto", backgroundColor: "#fdfdfc" }}>
+      <h1 style={{ fontSize: "2rem", marginBottom: "1.5rem", color: "#2d6a4f" }}>🌱 Little Dibby Garden Planner</h1>
+
       <div style={{ marginBottom: "1rem" }}>
         <label>
-          Enter Your Grow Zone (e.g., 7):
+          Enter Your Grow Zone:
           <input
             type="text"
             value={zone}
             onChange={(e) => setZone(e.target.value)}
-            style={{ marginLeft: "0.5rem" }}
+            style={{ marginLeft: "0.5rem", padding: "0.3rem 0.6rem", borderRadius: "5px", border: "1px solid #ccc" }}
+            placeholder="e.g., 7"
           />
         </label>
       </div>
+
       <div style={{ marginBottom: "1rem" }}>
         <label>
           Select Category:
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            style={{ marginLeft: "0.5rem" }}
+            style={{ marginLeft: "0.5rem", padding: "0.3rem 0.6rem", borderRadius: "5px", border: "1px solid #ccc" }}
           >
             <option value="all">All</option>
             <option value="flower">Flowers</option>
@@ -60,17 +67,33 @@ export default function GardenPlannerApp() {
           </select>
         </label>
       </div>
-      <button onClick={handleSearch}>Find Crops</button>
+
+      <button
+        onClick={handleSearch}
+        style={{ padding: "0.5rem 1rem", backgroundColor: "#52b788", color: "white", border: "none", borderRadius: "6px", cursor: "pointer" }}
+      >
+        Find Crops
+      </button>
 
       {filteredCrops.length > 0 && (
         <div style={{ marginTop: "2rem" }}>
-          <h2>🌼 Recommended Crops</h2>
-          <ul>
+          <h2 style={{ color: "#40916c" }}>🌼 Recommended Crops</h2>
+          <ul style={{ listStyleType: "none", padding: 0 }}>
             {filteredCrops.map((crop, index) => (
-              <li key={index} style={{ marginBottom: "1rem" }}>
-                <strong>{crop.Crop}</strong> ({crop.Type})<br />
-                🌱 Sow Indoors: {crop.Sow_Indoors}<br />
-                🌿 Sow Outdoors: {crop.Sow_Outdoors}<br />
+              <li
+                key={index}
+                style={{
+                  background: "#ffffff",
+                  border: "1px solid #ddd",
+                  borderRadius: "10px",
+                  padding: "1rem",
+                  marginBottom: "1rem",
+                  boxShadow: "0 2px 5px rgba(0,0,0,0.05)"
+                }}
+              >
+                <strong style={{ fontSize: "1.1rem" }}>{crop.Crop}</strong> <em>({crop.Type})</em><br />
+                🌱 Sow Indoors: {enhanceText(crop.Sow_Indoors)}<br />
+                🌿 Sow Outdoors: {enhanceText(crop.Sow_Outdoors)}<br />
                 ⏱ Days to Germination: {crop.Days_to_Germination}<br />
                 🍅 Days to Harvest: {crop.Days_to_Harvest}<br />
                 📍 Grow Zones: {formatZones(crop.Grow_Zones)}
