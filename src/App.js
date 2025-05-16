@@ -15,7 +15,7 @@ export default function GardenPlannerApp() {
       const categoryMatch =
         category === "all" || crop.Type.toLowerCase() === category.toLowerCase();
       return zoneMatch && categoryMatch;
-    });
+    });{}
 
     const sorted = results.sort((a, b) => {
       const aDays = parseInt(a.Days_to_Germination);
@@ -37,7 +37,7 @@ export default function GardenPlannerApp() {
 
   return (
     <div style={{ fontFamily: "Poppins, sans-serif", padding: "2rem", maxWidth: "800px", margin: "0 auto", backgroundColor: "#fdfdfc" }}>
-      <h1 style={{ fontSize: "2rem", marginBottom: "1.5rem", color: "#2d6a4f" }}>🌱 Little Dibby Garden Planner</h1>
+      <h1 style={{ fontSize: "2rem", marginBottom: "1.5rem", color: "#2d6a4f" }}>🌱 Garden Planner App</h1>
 
       <div style={{ marginBottom: "1rem" }}>
         <label>
