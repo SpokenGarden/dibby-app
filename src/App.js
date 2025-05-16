@@ -7,9 +7,11 @@ export default function GardenPlannerApp() {
   const [filteredCrops, setFilteredCrops] = useState([]);
 
   const handleSearch = () => {
+    const zonePattern = new RegExp(`Zone[\s]*${zone}`, "i");
+
     const results = cropData.filter((crop) => {
       const zoneMatch =
-        zone === "" || crop.Grow_Zones.toLowerCase().includes(zone.toLowerCase());
+        zone === "" || zonePattern.test(crop.Grow_Zones);
       const categoryMatch =
         category === "all" || crop.Type.toLowerCase() === category.toLowerCase();
       return zoneMatch && categoryMatch;
@@ -24,12 +26,17 @@ export default function GardenPlannerApp() {
     setFilteredCrops(sorted);
   };
 
+  const formatZones = (zones) => {
+    const numbers = zones.match(/\d+/g);
+    return numbers ? numbers.join(", ") : zones;
+  };
+
   return (
     <div style={{ fontFamily: "Arial, sans-serif", padding: "2rem" }}>
       <h1>🌱 Little Dibby Garden Planner</h1>
       <div style={{ marginBottom: "1rem" }}>
         <label>
-          Enter Your Grow Zone (e.g., Zone 7):
+          Enter Your Grow Zone (e.g., 7):
           <input
             type="text"
             value={zone}
@@ -66,7 +73,7 @@ export default function GardenPlannerApp() {
                 🌿 Sow Outdoors: {crop.Sow_Outdoors}<br />
                 ⏱ Days to Germination: {crop.Days_to_Germination}<br />
                 🍅 Days to Harvest: {crop.Days_to_Harvest}<br />
-                📍 Grow Zones: {crop.Grow_Zones}
+                📍 Grow Zones: {formatZones(crop.Grow_Zones)}
               </li>
             ))}
           </ul>
