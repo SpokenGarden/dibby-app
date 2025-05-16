@@ -7,7 +7,7 @@ export default function GardenPlannerApp() {
   const [filteredCrops, setFilteredCrops] = useState([]);
 
   const handleSearch = () => {
-    const zonePattern = new RegExp(`Zone[\s]*${zone}`, "i");
+    const zonePattern = new RegExp(`Zone[\\s]*${zone}`, "i");
 
     const results = cropData.filter((crop) => {
       const zoneMatch =
