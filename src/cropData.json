@@ -1,0 +1,47 @@
+[
+  {
+    "Crop":"Gazania",
+    "Type":"flower",
+    "Grow_Zones":"8 to 11",
+    "Days_to_Germination":"7 to 14",
+    "Days_to_Harvest":"90 to 110",
+    "Sow_Indoors":"6 to 8 before",
+    "Sow_Outdoors":"6 to 8 before"
+  },
+  {
+    "Crop":"Gomphrena",
+    "Type":"flower",
+    "Grow_Zones":"2 to 11",
+    "Days_to_Germination":"7 to 14",
+    "Days_to_Harvest":"80 to 100",
+    "Sow_Indoors":"6 to 8 before",
+    "Sow_Outdoors":"2 to 4 after"
+  },
+  {
+    "Crop":"Hollyhock",
+    "Type":"flower",
+    "Grow_Zones":"1 to 12",
+    "Days_to_Germination":"",
+    "Days_to_Harvest":"",
+    "Sow_Indoors":"8 to 10 before",
+    "Sow_Outdoors":"1 to 2 before"
+  },
+  {
+    "Crop":"Pea",
+    "Type":"vegetable",
+    "Grow_Zones":"1 to 9",
+    "Days_to_Germination":"6 to 17",
+    "Days_to_Harvest":40,
+    "Sow_Indoors":"",
+    "Sow_Outdoors":"4 to 6 before"
+  },
+  {
+    "Crop":"Radish",
+    "Type":"vegetable",
+    "Grow_Zones":"3 to 10",
+    "Days_to_Germination":"10 to 14",
+    "Days_to_Harvest":"27 to 35",
+    "Sow_Indoors":"",
+    "Sow_Outdoors":"4 to 6 before"
+  }
+]
