@@ -6,12 +6,12 @@ export default function GardenPlannerApp() {
   const [category, setCategory] = useState("all");
   const [filteredCrops, setFilteredCrops] = useState([]);
 
-  useEffect(() => {
-    fetch("/cropData.json")
-      .then((res) => res.json())
-      .then((data) => setCropData(data))
-      .catch((err) => console.error("Failed to load crop data:", err));
-  }, []);
+useEffect(() => {
+  fetch("/cropData.json")
+    .then((res) => res.json())
+    .then((data) => setCropData(data))
+    .catch((err) => console.error("Failed to load crop data:", err));
+}, []);
 
   const handleSearch = () => {
     const zonePattern = new RegExp(`Zone\\s*${zone}`, "i");
